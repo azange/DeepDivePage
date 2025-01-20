@@ -81,6 +81,196 @@
                 text-align: right;
             }
         }
+
+        /* Keep existing styles */
+        .container-fffff {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 100px 50px;
+        }
+        /* ... (keep all existing styles) ... */
+
+        /* New Modal Styles */
+        .details-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .details-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(25, 25, 25, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            z-index: 1001;
+            display: none;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            background: linear-gradient(45deg, #6200ea, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+        }
+
+        .modal-show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    fancy-btn-wrapper {
+    text-align: center;
+    margin: 40px 0;
+    perspective: 1000px;
+}
+
+.fancy-btn {
+    position: relative;
+    display: inline-block;
+    padding: 20px 45px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: rgba(98, 0, 234, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+                0 10px 30px rgba(98, 0, 234, 0.1);
+    transform-style: preserve-3d;
+}
+
+.fancy-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.fancy-btn:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #6200ea, #00ccff);
+    z-index: -1;
+    border-radius: 15px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.fancy-btn span {
+    display: block;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.fancy-btn:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.fancy-btn:hover:before {
+    left: 100%;
+}
+
+.fancy-btn:hover:after {
+    opacity: 1;
+}
+
+.fancy-btn:hover span {
+    transform: translateZ(20px);
+}
+
+.fancy-btn:active {
+    transform: translateY(0px) rotateX(0deg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add this glow animation */
+@keyframes glow {
+    0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(98, 0, 234, 0.1); }
+    50% { box-shadow: 0 5px 25px rgba(98, 0, 234, 0.3), 0 10px 40px rgba(0, 204, 255, 0.2); }
+    100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(98, 0, 234, 0.1); }
+}
+
+.fancy-btn {
+    animation: glow 3s infinite;
+}
+
     </style>
 
 </head>
@@ -134,19 +324,22 @@
         </div>
         
 
-        <!-- Vision Section -->
-        <section  class="snap-section">
-            <div class="container">
-                <div class="sectionf" id="vision">
-                    <h2>Our Vision</h2>
-                    <p>To be a global leader in innovation and sustainability, creating a better future for generations to come.</p>
-                </div>
-                <div class="sectionf" id="mission">
-                    <h2>Our Mission</h2>
-                    <p>Empowering communities through cutting-edge solutions that enhance quality of life and drive progress.</p>
-                </div>
+                <section class="snap-section">
+        <div class="container">
+            <div class="sectionf" id="vision">
+                <h2>Our Vision</h2>
+                        <p>DeepDive offers an accessible, community-driven platform for knowledge.</p>
+                        <p>Users customize learning through an innovative course module voting system.</p>
+                <button class="details-btn" onclick="openModal('vision-modal')">Learn More</button>
             </div>
-        </section>
+            <div class="sectionf" id="mission">
+                <h2>Our Mission</h2>
+                <p>DeepDive prioritizes accessibility, offering free access with a freemium model.</p>
+                 <p>A democratic voting system ensures accurate, credible, and factually correct content.</p>
+                <button class="details-btn" onclick="openModal('mission-modal')">Learn More</button>
+            </div>
+        </div>
+    </section>
 
         <!-- What Is DeepDive Section -->
         <section id="features" class="snap-section">
@@ -175,6 +368,22 @@
                 </div>
             </div>
         </section>
+
+                <div class="modal-backdrop" id="vision-modal-backdrop"></div>
+    <div class="modal-content" id="vision-modal">
+        <span class="close-modal" onclick="closeModal('vision-modal')">&times;</span>
+        <h2>Our Detailed Vision</h2>
+        Education creates equal opportunities, a principle more important than ever. However, there has rarely been a time when opportunities were as unevenly distributed as they are today. Society is increasingly divided, with children, adolescents, and young adults often suffering the most. The solution is education. With a good education, one can shape their own life, regardless of the circumstances from childhood.
+    </div>
+
+    <!-- Mission Modal -->
+    <div class="modal-backdrop" id="mission-modal-backdrop"></div>
+    <div class="modal-content" id="mission-modal">
+        <span class="close-modal" onclick="closeModal('mission-modal')">&times;</span>
+        <h2>Our Detailed Mission</h2>
+        DeepDive envisions a platform accessible to everyone – a knowledge hub where the community has full control. Through an innovative voting system, DeepDive allows users to deeply explore topics, ensuring that content is factually accurate and free from fake news. My mission is to make education as accessible and understandable as possible. The platform will be free and based on a freemium model, with only a phone and internet connection required.
+
+    </div>
 
         <!-- Why Choose Us Section -->
         <section id="features" class="snap-section">
@@ -230,18 +439,23 @@
             </div>
         </section>
 
-        <!-- Join Section -->
-        <section id="contact" class="snap-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="mb-4">Join the Community</h2>
-                        <p class="lead mb-4">Dive into the world of collaborative learning. Be a part of a platform where education is driven by creativity, integrity, and inclusivity.</p>
-                        <p class="lead">Your journey to knowledge awaits.</p>
-                    </div>
+            <!-- Join Section -->
+<section id="contact" class="snap-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="mb-4">Join the Community</h2>
+                <p class="lead mb-4">Dive into the world of collaborative learning. Be a part of a platform where education is driven by creativity, integrity, and inclusivity.</p>
+                <p class="lead">Your journey to knowledge awaits.</p>
+                <div class="fancy-btn-wrapper">
+                    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=qmYexsMBdUejGXGgfzxnpPoLvgG77llHvpLvdYWko7lUOERGUzdHWUhOTVRQMEpIU1ZUQTIzRE1SNy4u" class="fancy-btn" target="_blank">
+                        <span>Want to provide some Insight?</span>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
     </div>
 
     <!-- Bootstrap JS -->
@@ -348,6 +562,36 @@
             observer.observe(section);
         });
     });
+
+                function openModal(modalId) {
+            document.getElementById(modalId).classList.add('modal-show');
+            document.getElementById(modalId + '-backdrop').classList.add('modal-show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('modal-show');
+            document.getElementById(modalId + '-backdrop').classList.remove('modal-show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-backdrop')) {
+                const modals = document.querySelectorAll('.modal-content, .modal-backdrop');
+                modals.forEach(modal => modal.classList.remove('modal-show'));
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal-content, .modal-backdrop');
+                modals.forEach(modal => modal.classList.remove('modal-show'));
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
 </html>
