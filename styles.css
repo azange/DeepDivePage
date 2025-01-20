@@ -1,0 +1,374 @@
+:root {
+    --deep-blue: rgb(1, 0, 19);
+    --accent-blue: #144272;
+    --light-blue: #205295;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    scroll-snap-type: y mandatory;
+}
+
+body {
+    background-color: var(--deep-blue);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, 
+        rgb(12, 35, 85) 0%,
+        rgb(8, 22, 65) 40%,
+        rgb(3, 9, 45) 70%,
+        rgb(1, 0, 19) 100%
+    );
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.fish {
+    position: absolute;
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    background: url('./graphics/Untitled design.svg') no-repeat center center;
+    background-size: contain;
+    animation: swim 5s infinite ease-in-out;
+    z-index: 10;
+    top: 15%;
+    left: 20%;
+}
+
+/* Adjustments for larger screens (tablet/desktop) */
+@media (min-width: 768px) {
+    .fish {
+        width: 600px; /* Fixed width on larger screens */
+        height: 360px; /* Fixed height */
+        top: 10%; /* Adjusted top for larger screens */
+    }
+}
+
+/* Fix for fish visibility and animation on mobile */
+@media (max-width: 767px) {
+    .fish {
+        top: 20%; /* Make sure it's visible, lower on mobile */ /* Slight left position adjustment */
+        width: 90%; /* Ensure it's visible on smaller screens */
+    }
+}
+
+@keyframes swim {
+    0% {
+        left: -20%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.bubble {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    animation: float 2s infinite;
+}
+
+/* Adjust bubble sizes for smaller screens */
+@media (max-width: 768px) {
+    .bubble {
+        width: 8px;
+        height: 8px;
+    }
+    .bubble:nth-child(2) {
+        width: 7px;
+        height: 7px;
+    }
+    .bubble:nth-child(3) {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* Larger screens adjustments for bubble animations */
+@media (min-width: 768px) {
+    .bubble {
+        width: 10px;
+        height: 10px;
+    }
+    .bubble:nth-child(2) {
+        width: 8px;
+        height: 8px;
+    }
+    .bubble:nth-child(3) {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@keyframes jump {
+    0% {
+        offset-distance: 0%;
+    }
+    100% {
+        offset-distance: 100%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
+.navbar {
+    background-color: transparent !important;
+    z-index: 1030;
+    opacity: 0.5; /* Ensure navbar is always visible */
+    transition: all 0.3s ease;
+    pointer-events: all; /* Enable interaction */
+}
+
+.navbar:hover,
+.navbar.show-nav {
+    opacity: 1;
+    pointer-events: all;
+    background-color: rgba(1, 0, 19, 0.3) !important;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        opacity: 1;
+        pointer-events: all;
+        background-color: transparent !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .navbar-collapse {
+        padding: 1rem;
+    }
+
+    /* Mobile navbar behavior */
+    .navbar-collapse.show {
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+.nav-hover-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1029;
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .nav-hover-area {
+        display: none;
+    }
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s;
+    padding: 1rem !important;
+    text-align: center;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.hero-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    background: transparent;
+    padding-top: 76px; /* Keep the padding from the navbar */
+    text-align: center; /* Default to centered text */
+}
+
+@media (min-width: 992px) {
+    .hero-section {
+        text-align: left; /* Align text to the left on desktops */
+    }
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* Ensure the lead text is also centered and scaled appropriately */
+.hero-section .lead {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .hero-section .lead {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section h1 {
+        font-size: 2rem; /* Smaller font size for mobile */
+    }
+
+    .hero-section .lead {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+}
+
+.btn-group-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (min-width: 576px) {
+    .btn-group-hero {
+        flex-direction: row;
+        justify-content: center; /* Center buttons horizontally on tablets */
+    }
+}
+
+@media (min-width: 992px) {
+    .btn-group-hero {
+        justify-content: flex-start; /* Align buttons to the left on desktop */
+    }
+}
+
+.btn {
+    width: 100%;
+    max-width: 300px;
+}
+
+@media (min-width: 576px) {
+    .btn {
+        width: auto;
+    }
+}
+
+.feature-card {
+    background-color: rgba(20, 66, 114, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+    .feature-card {
+        padding: 2rem;
+        margin-bottom: 0;
+    }
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(20, 66, 114, 0.4);
+}
+
+.app-preview-img {
+    margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+    .app-preview-img {
+        margin-top: 0;
+    }
+}
+
+.mobile-nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(1, 0, 19, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1020;
+}
+
+.navbar-collapse {
+    background: transparent;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        padding: 1rem;
+    }
+
+    .navbar-collapse.show {
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .navbar {
+        opacity: 1;
+        pointer-events: all;
+        background-color: transparent !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+.snap-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.snap-section.in-view .content-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+}
