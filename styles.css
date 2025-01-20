@@ -31,10 +31,10 @@ body {
     height: auto;
     background: url('./graphics/Untitled design.svg') no-repeat center center;
     background-size: contain;
-    animation: swim 5s infinite ease-in-out;
+    animation: swimOffPath 10s infinite cubic-bezier(0.25, 0.1, 0.25, 1); /* Duration kept at 6s */
     z-index: 10;
-    top: 15%;
-    left: 20%;
+    top: 15%; /* Adjust the vertical starting position */
+    left: 20%; /* Adjust the horizontal starting position */
 }
 
 /* Adjustments for larger screens (tablet/desktop) */
@@ -49,17 +49,29 @@ body {
 /* Fix for fish visibility and animation on mobile */
 @media (max-width: 767px) {
     .fish {
-        top: 20%; /* Make sure it's visible, lower on mobile */ /* Slight left position adjustment */
+        top: 20%; /* Ensure visibility, lower on mobile */
         width: 90%; /* Ensure it's visible on smaller screens */
     }
 }
 
-@keyframes swim {
+@keyframes swimOffPath {
     0% {
-        left: -20%;
+        transform: translate(-400%, 0); /* Start further off-screen to the left */
+    }
+    20% {
+        transform: translate(0%, -5%); /* Slight upward movement */
+    }
+    40% {
+        transform: translate(40%, 10%); /* Move right and dip downward */
+    }
+    60% {
+        transform: translate(70%, -10%); /* Move further right and up */
+    }
+    80% {
+        transform: translate(100%, 5%); /* Approaching the edge */
     }
     100% {
-        left: 100%;
+        transform: translate(400%, 0); /* End further off-screen to the right */
     }
 }
 
